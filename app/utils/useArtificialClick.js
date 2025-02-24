@@ -14,9 +14,10 @@ export const useArtificialClick = () => {
 
       // Инициируем клик по кнопке
       button.click();
+      console.log('click')
 
       // Удаляем кнопку после клика
-      document.body.removeChild(button);
+      // document.body.removeChild(button);
 
       // Устанавливаем флаг в sessionStorage, чтобы клик больше не выполнялся
       sessionStorage.setItem('clicked', 'true');
