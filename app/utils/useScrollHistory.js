@@ -4,39 +4,26 @@ export const useScrollHistory = () => {
   useEffect(() => {
     const handleScroll = () => {
       // Получаем текущий массив истории из sessionStorage, если он существует
-      let historyArray =
-        JSON.parse(sessionStorage.getItem('scrollHistory')) || [];
+      let isScrolled =
+        JSON.parse(sessionStorage.getItem('isScrolled')) || false;
       let isBlock =
-        JSON.parse(sessionStorage.getItem('isBlock')) || false;
-      const lastElementScroll =
-        historyArray[historyArray.length - 1] === 'scroll';
-
-      console.log({
-        scrollY: window.scrollY,
-        lastElementScroll,
-        isBlock,
-      });
+        JSON.parse(sessionStorage.getItem('isBlockScroll')) || false;
 
       if (isBlock) {
-        console.log('scroll to 0');
         window.scrollTo(0, 0);
-        sessionStorage.setItem('isBlock', false);
+        sessionStorage.setItem('isBlockScroll', false);
       }
 
       isBlock =
-        JSON.parse(sessionStorage.getItem('isBlock')) || false;
+        JSON.parse(sessionStorage.getItem('isBlockScroll')) || false;
 
-      if (window.scrollY > 0 && !lastElementScroll && !isBlock) {
-        console.log('add scroll');
-        historyArray.push('scroll');
-        sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
+      if (window.scrollY > 0 && !isScrolled && !isBlock) {
+        sessionStorage.setItem('isScrolled', true);
         window.history.pushState(null, '', window.location.href);
-      } else if (window.scrollY === 0 && lastElementScroll) {
-        console.log('history back');
-        sessionStorage.setItem('isBlock', true);
+      } else if (window.scrollY === 0 && isScrolled) {
+        sessionStorage.setItem('isBlockScroll', true);
+        sessionStorage.setItem('isScrolled', false); // Сохраняем обновленный массив
         window.history.back();
-        historyArray.pop(); // Удаляем последний элемент
-        sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray)); // Сохраняем обновленный массив
       }
     };
 

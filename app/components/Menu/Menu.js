@@ -3,21 +3,13 @@ import { useState } from 'react';
 const Menu = ({ isOpen, setIsOpen }) => {
   const openMenu = () => {
     setIsOpen(true);
-    console.log('add MENU');
-    let historyArray =
-      JSON.parse(sessionStorage.getItem('scrollHistory')) || [];
-    historyArray.push('menu');
-    sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
+    sessionStorage.setItem('isOpenMenu', true);
     window.history.pushState(null, '', window.location.href);
   };
 
   const closeMenu = () => {
     setIsOpen(false);
-    console.log('remove MENU');
-    let historyArray =
-      JSON.parse(sessionStorage.getItem('scrollHistory')) || [];
-    historyArray.pop(); // Удаляем последний элемент
-    sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
+    sessionStorage.setItem('isOpenMenu', false);
     window.history.back();
   };
 

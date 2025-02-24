@@ -10,18 +10,15 @@ export default function Home() {
 
   useScrollHistory();
   usePopState((event) => {
-    const historyArray =
-      JSON.parse(sessionStorage.getItem('scrollHistory')) || [];
-    const lastElement = historyArray[historyArray.length - 1];
-    if (lastElement === 'menu') {
+    if (sessionStorage.getItem('isOpenMenu') === 'true'){
+      console.log('close menu')
       setIsOpenMenu(false);
-      historyArray.pop();
-      sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
-    } else if (lastElement === 'scroll') {
-      console.log('last scroll');
-      sessionStorage.setItem('isBlock', true);
-      historyArray.pop();
-      sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
+      sessionStorage.setItem('isOpenMenu', false);
+    }
+    else if (sessionStorage.getItem('isScrolled') === 'true') {
+      console.log('scrolled top')
+      sessionStorage.setItem('isBlockScroll', true);
+      sessionStorage.setItem('isScrolled', false);
       window.scrollTo(0, 0);
     }
   });
