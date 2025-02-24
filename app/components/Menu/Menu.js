@@ -1,15 +1,11 @@
-import { useState } from 'react';
-
 const Menu = ({ isOpen, setIsOpen }) => {
   const openMenu = () => {
     setIsOpen(true);
-    sessionStorage.setItem('isOpenMenu', true);
     window.history.pushState(null, '', window.location.href);
   };
 
   const closeMenu = () => {
     setIsOpen(false);
-    sessionStorage.setItem('isOpenMenu', false);
     window.history.back();
   };
 
