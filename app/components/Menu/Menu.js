@@ -2,7 +2,7 @@ import { useBackFunction } from '../../utils/useBackFunction';
 
 const Menu = ({ isOpen, setIsOpen }) => {
   useBackFunction({
-    handleMenu: { setIsOpenMenu: setIsOpen, isOpenMenu: isOpen },
+    handleMenu: { setIsOpen, isOpen },
     handleScroll: true,
   });
 

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import usePopState from './usePopState';
 
 export const useBackFunction = ({
-  handleMenu: { setIsOpenMenu, isOpenMenu },
+  handleMenu: { setIsOpen, isOpen },
   handleScroll,
 }) => {
   const handleScrollEvent = () => {
@@ -39,10 +39,9 @@ export const useBackFunction = ({
   });
 
   usePopState(() => {
-    if (isOpenMenu) {
-        setIsOpenMenu(false)
+    if (isOpen) {
+        setIsOpen(false)
     } else if (sessionStorage.getItem('isScrolled') === 'true') {
-      console.log('scrolled top');
       sessionStorage.setItem('isBlockScroll', true);
       sessionStorage.setItem('isScrolled', false);
       window.scrollTo(0, 0);
