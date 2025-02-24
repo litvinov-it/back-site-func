@@ -13,7 +13,8 @@ export default function Home() {
   });
 
   return (
-    <main className="h-[2200px] flex flex-col justify-center items-center bg-black">
+    <main className="h-[2200px] bg-black">
+      <div className='h-[20px] w-full bg-red-50 text-black flex justify-center'>верх страницы</div>
       <Menu isOpen={isOpenMenu} setIsOpen={setIsOpenMenu} />
       <Link
         className="p-4 bg-slate-600 text-white fixed bottom-2 left-1/2 cursor-pointer"
