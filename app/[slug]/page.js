@@ -2,27 +2,9 @@
 import { useState } from "react";
 import Menu from "../components/Menu/Menu";
 import usePopState from "../utils/usePopState";
-import { useScrollHistory } from "../utils/useScrollHistory";
 
 export default function Home() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
-  useScrollHistory();
-  usePopState((event) => {
-    const historyArray = JSON.parse(sessionStorage.getItem('scrollHistory')) || [];
-    const lastElement = historyArray[historyArray.length - 1];
-    if (lastElement === 'menu') {
-      setIsOpenMenu(false);
-      historyArray.pop()
-      sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
-    } else if (lastElement === 'scroll') {
-      console.log('last scroll')
-      sessionStorage.setItem('isBlock', true);
-      historyArray.pop()
-      sessionStorage.setItem('scrollHistory', JSON.stringify(historyArray));
-      window.scrollTo(0, 0);
-    }
-  })
 
   return (
     <main className="h-[2200px] flex flex-col justify-center items-center bg-black">

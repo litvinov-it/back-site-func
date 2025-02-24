@@ -1,16 +1,10 @@
 'use client';
 import { useState } from 'react';
 import Menu from './components/Menu/Menu';
-import { useBackFunction } from './utils/useBackFunction';
 import Link from 'next/link';
 
 export default function Home() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
-
-  useBackFunction({
-    handleMenu: { setIsOpenMenu, isOpenMenu },
-    handleScroll: true,
-  });
 
   return (
     <main className="h-[2200px] bg-black">
