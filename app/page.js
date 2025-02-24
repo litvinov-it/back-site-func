@@ -3,13 +3,11 @@ import { useState } from 'react';
 import Menu from './components/Menu/Menu';
 import usePopState from './utils/usePopState';
 import { useScrollHistory } from './utils/useScrollHistory';
-import { useArtificialClick } from './utils/useArtificialClick';
 import Link from 'next/link';
 
 export default function Home() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-  useArtificialClick();
   useScrollHistory();
   usePopState((event) => {
     const historyArray =
